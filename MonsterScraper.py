@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
-#import urllib2
 import re
+import time
 
 def scrape_monster(monster_link):
     page_link = 'http://www.orcpub.com' + monster_link
@@ -41,9 +41,12 @@ def scrape_monster(monster_link):
     action_html = soup.find(string='Actions').find_parent('div').find_all('strong')
     for i in action_html:
         actions += i.get_text()
-    leg_action_html = soup.find(string='Legendary Actions').find_parent('div').find_all('strong')
-    for i in leg_action_html:
-        leg_actions += i.get_text()
+    try:
+        leg_action_html = soup.find(string='Legendary Actions').find_parent('div').find_all('strong')
+        for i in leg_action_html:
+            leg_actions += i.get_text()
+    except:
+        leg_actions = ''
 
     print(monster_name)
     print(monster_size + ' ' + monster_type + ', ' + monster_align)
@@ -81,6 +84,7 @@ for link in soup.find_all('a'):
     if link.get('href') is not None and '/monsters/' in link.get('href'):
         #        print(link.get('href'))
         scrape_monster(link.get('href'))
-        break
+        time.sleep(5) #Be nice to the website
+
 
 
