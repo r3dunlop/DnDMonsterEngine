@@ -3,7 +3,7 @@ import requests
 import re
 import time
 import monster as mn
-import actions as ac 
+#import actions as ac 
 import csv
 
 def scrape_monster(monster_link):
