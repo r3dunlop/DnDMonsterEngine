@@ -7,6 +7,10 @@ class Action:
     def header():
         return ['Name','Description','Type']
 
+    def tolist(self):
+        return [self.name,self.description,self.type]
+
+
 class Monster:
     def __init__(self, name):
         self.name = name
@@ -59,7 +63,6 @@ class Monster:
         print('extras = ' + self.extras)
         print('actions = ' + self.actions)
         print('legendary = ' + self.leg_actions)
-        print('*********')
     
     def property_list(self):
         return [self.name,self.size,self.type,self.align,self.armor_class,self.hp,self.hit_die,self.speed,self.str,self.dex,self.con,self.int,self.wis,self.cha,self.proficiency,self.skills,self.resistances,self.immunities,self.cond_immunities,self.senses,self.languages,self.challenge,self.extras,self.actions,self.leg_actions]
@@ -67,7 +70,7 @@ class Monster:
     def header():
         return ['Name','Size','Type','Alignment','AC','HP','Hit Die','Speed','Str','Dex','Con','Int','Wis','Cha','Proficiency','Skills','Resistance','Immunity','Condition Immunity','Senses','Languages','CR','Extras','Actions','Leg Actions']
 
-    def add_action(action):
+    def add_action(self,action):
         self.action_list.append(action)
 
 

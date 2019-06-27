@@ -74,7 +74,7 @@ def scrape_monster(monster_link):
         extra_html = soup.find_all(class_='col-xs-12 col-md-6')[0].find_all('strong')
         for i in extra_html:
             monster.extras += i.get_text()
-        action_html = soup.find(string='Actions').find_parent('div').find_all('strong')
+            monster.add_action(mn.Action(i.get_text(), i.find_parent('p').find(class_='m-l-5').get_text(),'extra'))
     except:
         monster.extras = ''
 
@@ -82,6 +82,7 @@ def scrape_monster(monster_link):
         action_html = soup.find(string='Actions').find_parent('div').find_all('strong')
         for i in action_html:
             monster.actions += i.get_text()
+            monster.add_action(mn.Action(i.get_text(), i.find_parent('p').find(class_='m-l-5').get_text(),'action'))
     except:
         monster.actions = ''
 
@@ -89,6 +90,7 @@ def scrape_monster(monster_link):
         leg_action_html = soup.find(string='Legendary Actions').find_parent('div').find_all('strong')
         for i in leg_action_html:
             monster.leg_actions += i.get_text()
+            monster.add_action(mn.Action(i.get_text(), i.find_parent('p').find(class_='m-l-5').get_text(),'legend'))
     except:
         monster.leg_actions = ''
 
@@ -98,16 +100,11 @@ page_link = 'http://www.orcpub.com/dungeons-and-dragons/5th-edition/monsters'
 monster_filename = 'monsters.csv'
 action_filename = 'actions.csv'
 
-
 #Fetch the content from the url
 page_response = requests.get(page_link, timeout=5)
 #Use the html parser to parse the url content and store it in a variable.
 
 soup = BeautifulSoup(page_response.content, "html.parser")
-textContent = []
-
-
-counter = 0
 
 with open(monster_filename,'w') as monster_file, open(action_filename,'w') as action_file:
     csv_monster_writer = csv.writer(monster_file)
@@ -116,11 +113,11 @@ with open(monster_filename,'w') as monster_file, open(action_filename,'w') as ac
     csv_action_writer.writerow(['Monster Name'] + mn.Action.header())
     for link in soup.find_all('a'):
         if link.get('href') is not None and '/monsters/' in link.get('href'):
-            #        print(link.get('href'))
             monster = scrape_monster(link.get('href'))
             monster.show()
-            #csv_monster_writer.writerow(monster.property_list())
-            break
+            csv_monster_writer.writerow(monster.property_list())
+            for action in monster.action_list:
+                csv_action_writer.writerow([monster.name] + action.tolist())
             time.sleep(3) #Be nice to the website
 
 
