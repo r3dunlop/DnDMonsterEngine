@@ -1,3 +1,12 @@
+class Action:
+    def __init__(self, name, description, type):
+        self.name = name
+        self.description = description
+        self.type = type
+    
+    def header():
+        return ['Name','Description','Type']
+
 class Monster:
     def __init__(self, name):
         self.name = name
@@ -25,6 +34,7 @@ class Monster:
         self.extras = None
         self.actions = None
         self.leg_actions = None
+        self.action_list = []
 
     def show(self):
         print(self.name)
@@ -56,3 +66,8 @@ class Monster:
 
     def header():
         return ['Name','Size','Type','Alignment','AC','HP','Hit Die','Speed','Str','Dex','Con','Int','Wis','Cha','Proficiency','Skills','Resistance','Immunity','Condition Immunity','Senses','Languages','CR','Extras','Actions','Leg Actions']
+
+    def add_action(action):
+        self.action_list.append(action)
+
+

@@ -95,7 +95,8 @@ def scrape_monster(monster_link):
     return monster
 
 page_link = 'http://www.orcpub.com/dungeons-and-dragons/5th-edition/monsters'
-output_filename = 'out_monsters.csv'
+monster_filename = 'monsters.csv'
+action_filename = 'actions.csv'
 
 
 #Fetch the content from the url
@@ -108,16 +109,18 @@ textContent = []
 
 counter = 0
 
-with open(output_filename,'w') as outfile:
-    csv_writer = csv.writer(outfile)
-    csv_writer.writerow(mn.Monster.header())
+with open(monster_filename,'w') as monster_file, open(action_filename,'w') as action_file:
+    csv_monster_writer = csv.writer(monster_file)
+    csv_action_writer = csv.writer(action_file)
+    csv_monster_writer.writerow(mn.Monster.header())
+    csv_action_writer.writerow(['Monster Name'] + mn.Action.header())
     for link in soup.find_all('a'):
         if link.get('href') is not None and '/monsters/' in link.get('href'):
             #        print(link.get('href'))
             monster = scrape_monster(link.get('href'))
             monster.show()
-            csv_writer.writerow(monster.property_list())
-            
+            #csv_monster_writer.writerow(monster.property_list())
+            break
             time.sleep(3) #Be nice to the website
 
 
