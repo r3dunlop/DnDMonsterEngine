@@ -13283,7 +13283,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The part of the monster that has a rigid application in the game mechanics is the "actions" section. This is where each monsters attacks are described. There are also "extras" that tend to contain special information about about what a monster can and can't do (jump high, breathe water, etc.). Some monsters have "Legendary Actions" that can be played at the end of each characters turn, but only once per monster turn. For now, I will focus on just 'actions'.</p>
+<h2 id="Understanding-how-Actions-contribute-to-attack">Understanding how Actions contribute to attack<a class="anchor-link" href="#Understanding-how-Actions-contribute-to-attack">&#182;</a></h2><p>The part of the monster that has a rigid application in the game mechanics is the "actions" section. This is where each monsters attacks are described. There are also "extras" that tend to contain special information about about what a monster can and can't do (jump high, breathe water, etc.). Some monsters have "Legendary Actions" that can be played at the end of each characters turn, but only once per monster turn. For now, I will focus on just 'actions'.</p>
 
 </div>
 </div>
@@ -13428,7 +13428,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">=</span> <span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;. &#39;</span><span class="p">))</span>
@@ -13441,7 +13441,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[99]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_actions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13457,7 +13457,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[99]:</div>
 
 
 
@@ -13490,36 +13490,36 @@ div#notebook {
     <tr>
       <th>3</th>
       <td>Aboleth</td>
-      <td>Multiattack</td>
-      <td>The aboleth makes three tentacle attacks.</td>
+      <td>multiattack</td>
+      <td>the aboleth makes three tentacle attacks.</td>
       <td>action</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Aboleth</td>
-      <td>Tentacle</td>
-      <td>Melee Weapon Attack: +9 to hit, reach 10 ft., ...</td>
+      <td>tentacle</td>
+      <td>melee weapon attack: +9 to hit, reach 10 ft., ...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>5</th>
       <td>Aboleth</td>
-      <td>Tail</td>
-      <td>Melee Weapon Attack: +9 to hit, reach 10 ft. o...</td>
+      <td>tail</td>
+      <td>melee weapon attack: +9 to hit, reach 10 ft. o...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>6</th>
       <td>Aboleth</td>
-      <td>Enslave</td>
-      <td>The aboleth targets one creature it can see wi...</td>
+      <td>enslave</td>
+      <td>the aboleth targets one creature it can see wi...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>13</th>
       <td>Deva</td>
-      <td>Multiattack</td>
-      <td>The deva makes two melee attacks.</td>
+      <td>multiattack</td>
+      <td>the deva makes two melee attacks.</td>
       <td>action</td>
     </tr>
   </tbody>
@@ -13533,9 +13533,30 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I will need to be searching for substrings within the attack description at some point. Let's make everything lower case to make this easier.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_actions</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Description&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span><span class="s1">&#39;Description&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_actions</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -13551,33 +13572,33 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[58]:</div>
+    <div class="prompt output_prompt">Out[101]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
 <pre>Name
-Acid Breath           7
-Acid Spray            1
-Animate Chains        1
-Animate Trees         1
-Antennae              1
-Battleaxe             1
-Beak                 12
-Beaks                 1
-Beard                 1
-Bite                138
-Bites                 6
-Blinding Breath       1
-Blinding Spittle      1
-Blood Drain           1
-Breath Weapons       20
-Chain                 1
-Change Shape         11
-Charm                 2
-Claw                 54
-Claws                29
+acid breath           7
+acid spray            1
+animate chains        1
+animate trees         1
+antennae              1
+battleaxe             1
+beak                 12
+beaks                 1
+beard                 1
+bite                138
+bites                 6
+blinding breath       1
+blinding spittle      1
+blood drain           1
+breath weapons       20
+chain                 1
+change shape         11
+charm                 2
+claw                 54
+claws                29
 Name: Type, dtype: int64</pre>
 </div>
 
@@ -13597,10 +13618,10 @@ Name: Type, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_claw</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;Claw&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_claw</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;claw&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_claw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span><span class="p">)</span>
 <span class="n">df_claw</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -13619,14 +13640,14 @@ Name: Type, dtype: int64</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 15 (3d6 + 5) slashing damage.
+<pre>melee weapon attack: +10 to hit, reach 10 ft., one target. hit: 15 (3d6 + 5) slashing damage.
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[83]:</div>
+    <div class="prompt output_prompt">Out[103]:</div>
 
 
 
@@ -13659,36 +13680,36 @@ Name: Type, dtype: int64</pre>
     <tr>
       <th>122</th>
       <td>Hezrou</td>
-      <td>Claw</td>
-      <td>Melee Weapon Attack: +7 to hit, reach 5 ft., o...</td>
+      <td>claw</td>
+      <td>melee weapon attack: +7 to hit, reach 5 ft., o...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>133</th>
       <td>Nalfeshnee</td>
-      <td>Claw</td>
-      <td>Melee Weapon Attack: +10 to hit, reach 10 ft.,...</td>
+      <td>claw</td>
+      <td>melee weapon attack: +10 to hit, reach 10 ft.,...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>150</th>
       <td>Barbed Devil</td>
-      <td>Claw</td>
-      <td>Melee Weapon Attack: +6 to hit, reach 5 ft., o...</td>
+      <td>claw</td>
+      <td>melee weapon attack: +6 to hit, reach 5 ft., o...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>162</th>
       <td>Bone Devil</td>
-      <td>Claw</td>
-      <td>Melee Weapon Attack: +8 to hit, reach 10 ft., ...</td>
+      <td>claw</td>
+      <td>melee weapon attack: +8 to hit, reach 10 ft., ...</td>
       <td>action</td>
     </tr>
     <tr>
       <th>200</th>
       <td>Pit Fiend</td>
-      <td>Claw</td>
-      <td>Melee Weapon Attack: +14 to hit, reach 10 ft.,...</td>
+      <td>claw</td>
+      <td>melee weapon attack: +14 to hit, reach 10 ft.,...</td>
       <td>action</td>
     </tr>
   </tbody>
@@ -13704,12 +13725,152 @@ Name: Type, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_claws</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;Claws&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_claws</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;claws&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_claws</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span><span class="p">)</span>
 <span class="n">df_claws</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At first glance, it appears as if the difference between plural attacks and singular attacks is syntactic and has no bearing on the way the attack is staged. We can double check this by searching each attack for the occurance of a digit. The singular digits should suffice in confirming this hypothesis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">number_word_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">,</span><span class="s1">&#39;four&#39;</span><span class="p">,</span><span class="s1">&#39;five&#39;</span><span class="p">,</span><span class="s1">&#39;six&#39;</span><span class="p">,</span><span class="s1">&#39;seven&#39;</span><span class="p">,</span><span class="s1">&#39;eight&#39;</span><span class="p">,</span><span class="s1">&#39;nine&#39;</span><span class="p">]</span> 
+<span class="c1">#Made a list in case I want to use it later</span>
+<span class="n">number_word_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">number_word_list</span><span class="p">:</span>
+    <span class="n">number_word_string</span> <span class="o">+=</span> <span class="n">number</span> <span class="o">+</span> <span class="s2">&quot;|&quot;</span>
+<span class="n">number_word_string</span> <span class="o">=</span> <span class="n">number_word_string</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+
+<span class="n">df_multiple</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">number_word_string</span><span class="p">)]</span>
+<span class="n">df_multiple</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">Type</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[117]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Name
+animate chains       1
+animate trees        1
+claw                 2
+create specter       1
+ethereal stride      1
+fey charm            1
+lightning storm      1
+longsword            7
+multiattack        136
+phantasms            1
+pincer               2
+quarterstaff         1
+spear                8
+teleport             1
+tentacle             1
+warhammer            1
+whelm                1
+Name: Type, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Understanding-Multiattack">Understanding Multiattack<a class="anchor-link" href="#Understanding-Multiattack">&#182;</a></h3><p><code>Multiattack</code> has by far the most entries. Let's examin a set of multiattacks to understand what it does.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_multiple</span><span class="p">[</span><span class="n">df_multiple</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;multiattack&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[122]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3             the aboleth makes three tentacle attacks.
+13                    the deva makes two melee attacks.
+21                the planetar makes two melee attacks.
+28              the solar makes two greatsword attacks.
+38                   the armor makes two melee attacks.
+55    the behir makes two attacks: one with its bite...
+68    the centaur makes two attacks: one with its pi...
+72    the chimera makes three attacks: one with its ...
+79    the chuul makes two pincer attacks. if the chu...
+85    the cloaker makes two attacks: one with its bi...
+Name: Description, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It looks as though <code>multiattack</code> just defines which attacks a monster can do if they can make more than one attack. To confirm this, let's do a search on <code>makes n attacks</code> and make sure the list is the same size.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_multiple</span><span class="p">[(</span><span class="n">df_multiple</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;multiattack&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">df_multiple</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;makes &#39;</span> <span class="o">+</span> <span class="n">number_word_string</span> <span class="o">+</span> <span class="s2">&quot; attacks&quot;</span> <span class="p">,</span><span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span><span class="o">.</span><span class="n">Description</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_multiple</span><span class="p">[</span><span class="n">df_multiple</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;multiattack&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13726,83 +13887,10 @@ Name: Type, dtype: int64</pre>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 5 (2d4) slashing damage.
+<pre>136
+136
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[84]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Monster Name</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>75</th>
-      <td>Chimera</td>
-      <td>Claws</td>
-      <td>Melee Weapon Attack: +7 to hit, reach 5 ft., o...</td>
-      <td>action</td>
-    </tr>
-    <tr>
-      <th>111</th>
-      <td>Dretch</td>
-      <td>Claws</td>
-      <td>Melee Weapon Attack: +2 to hit, reach 5 ft., o...</td>
-      <td>action</td>
-    </tr>
-    <tr>
-      <th>138</th>
-      <td>Quasit</td>
-      <td>Claws</td>
-      <td>Melee Weapon Attack: +4 to hit, reach 5 ft., o...</td>
-      <td>action</td>
-    </tr>
-    <tr>
-      <th>184</th>
-      <td>Ice Devil</td>
-      <td>Claws</td>
-      <td>Melee Weapon Attack: +10 to hit, reach 5 ft., ...</td>
-      <td>action</td>
-    </tr>
-    <tr>
-      <th>595</th>
-      <td>Ettercap</td>
-      <td>Claws</td>
-      <td>Melee Weapon Attack: +4 to hit, reach 5 ft., o...</td>
-      <td>action</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
 </div>
 
 </div>
@@ -13812,9 +13900,136 @@ Name: Type, dtype: int64</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>They are the same! Great! We understand what multiattack does. We should remember this for later.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-other-actions-with-numbers-in-them">The other actions with numbers in them<a class="anchor-link" href="#The-other-actions-with-numbers-in-them">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's look at the remaining actions with english numbers &gt; 1, but specifically if it references to an attack and includes damage or hitting.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_multiple_no_ma</span> <span class="o">=</span> <span class="n">df_actions</span><span class="p">[</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">number_word_string</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="p">(</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Name</span> <span class="o">==</span> <span class="s1">&#39;multiattack&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;damage|hit&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df_actions</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;attack&#39;</span><span class="p">)))</span> <span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_multiple_no_ma</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_multiple_no_ma</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>24
+melee or ranged weapon attack: +4 to hit, reach 5 ft. or range 20/60 ft., one creature. hit: 5 (1d6 + 2) piercing damage, or 6 (1d8 + 2) piercing damage if used with two hands to make a melee attack.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Many of the remaining actions look like they all attack one creature or one target, but have logic depending on the number of hands being used.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_multiple_no_ma_no_hands</span> <span class="o">=</span> <span class="n">df_multiple_no_ma</span><span class="p">[</span><span class="o">~</span><span class="n">df_multiple_no_ma</span><span class="o">.</span><span class="n">Description</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;two hands&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_multiple_no_ma_no_hands</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_multiple_no_ma_no_hands</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">Description</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>melee weapon attack: +6 to hit, reach 10 ft., one target. hit: 11 (2d6 + 4) bludgeoning damage. the target is grappled (escape dc 14) if it is a large or smaller creature and the chuul doesn&#39;t have two other creatures grappled.
+
+the cloaker magically creates three illusory duplicates of itself if it isn&#39;t in bright light. the duplicates move with it and mimic its actions, shifting position so as to make it impossible to track which cloaker is the real one. if the cloaker is ever in an area of bright light, the duplicates disappear.
+whenever any creature targets the cloaker with an attack or a harmful spell while a duplicate remains, that creature rolls randomly to determine whether it targets the cloaker or one of the duplicates. a creature is unaffected by this magical effect if it can&#39;t see or if it relies on senses other than sight.
+a duplicate has the cloaker&#39;s ac and uses its saving throws. if an attack hits a duplicate, or if a duplicate fails a saving throw against an effect that deals damage, the duplicate disappears.
+
+
+melee weapon attack: +14 to hit, reach 10 ft., one target. hit: 21 (3d8 + 8) slashing damage plus 13 (3d8) lightning damage. if the balor scores a critical hit, it rolls damage dice three times, instead of twice.
+
+melee weapon attack: +9 to hit, reach 10 ft., one target. hit: 16 (2d10 + 5) bludgeoning damage. if the target is a medium or smaller creature, it is grappled (escape dc 15). the glabrezu has two pincers, each of which can grapple only one target.
+
+up to four chains the devil can see within 60 feet of it magically sprout razor-edged barbs and animate under the devil&#39;s control, provided that the chains aren&#39;t
+being worn or carried.
+each animated chain is an object with ac 20, 20 hit points, resistance to piercing damage, and immunity to psychic and thunder damage. when the devil uses multiattack on its turn, it can use each animated chain to make one additional chain attack. an animated chain can grapple one creature of its own but can&#39;t make attacks while grappling. an animated chain reverts to its inanimate state if reduced to 0 hit points or if the devil is incapacitated or dies.
+
+
+melee weapon attack: +6 to hit, reach 10 ft., one target. hit: 7 (1d8 + 3) bludgeoning damage plus 4 (1d8) piercing damage. if the target is medium or smaller, it is grappled (escape dc 13) and restrained until the grapple ends. the otyugh has two tentacles, each of which can grapple one target.
+
+melee weapon attack: +3 to hit, reach 5 ft., one target. hit: 4 (1d6 + 1) bludgeoning damage, and the target is grappled (escape dc 11). the crab has two claws, each of which can grapple only one target.
+
+
+melee weapon attack: +4 to hit, reach 5 ft., one target. hit: 6 (1d8 + 2) bludgeoning damage, and the target is grappled (escape dc 12). the scorpion has two claws, each of which can grapple only one target.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
     </div>
   </div>
